@@ -1,0 +1,28 @@
+extends ../header
+
+block content
+	.content
+		h2.startup users
+		table.table
+			thead.thead-dark
+				tr
+					th(scope='col') #
+					th(scope='col') _id
+					th(scope='col') Username
+					th(scope='col') Email
+					th(scope='col')
+			if users
+				each user,i in users
+					tbody
+						tr
+							th(scope='row') #{i+1}
+							td #{user._id}
+							td #{user.username}
+							td #{user.email}
+							td
+								a.delete(href='/admin/user/remove/#{user._id}') Delete
+
+			br
+
+		if users==''
+			h2.err No user present

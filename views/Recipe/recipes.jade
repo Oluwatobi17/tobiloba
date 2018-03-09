@@ -1,0 +1,36 @@
+extends ../header
+
+block content
+	.recipe-info1
+		h2.startup Recipes
+			.goo
+				a.add#giver(href='#', onClick="formGiver('addForm', 'giver')") Add recipe
+
+				.recipe-info2(id='addForm')
+
+					h2.recipe-text Add Recipe
+					form(method='post', action='/recipes/addRecipe', enctype='multipart/form-data')
+						input.recipe-data(type='text', name='title', placeholder='Recipe title' required)
+						input.recipe-data(type='text', name='time', placeholder='Duration (30 M)' required)
+						textarea.textarea(name='ingredient', placeholder='Recipe ingredents' required)
+						textarea.desciption(name='description', placeholder='Description the item' required)
+						input.recipe-data(type='file', name='itemImage' required)
+						input.recipe-submit(type='submit', value='Add Recipe')
+		if recipes
+			each recipe,i in recipes
+				.bucket
+					h3.title #{recipe.title}
+					
+					button.view(id='#{recipe._id}+2',onClick="droper('#{recipe._id}', '#{recipe._id}+2')") View
+
+					.recipe(id='#{recipe._id}')
+						img.rec-img(src='/images/RecipeImage/#{recipe.itemImage}')
+						h4.ingredient Duration: 
+						| #{recipe.time}
+						h4.ingredient Ingredient: 
+						| #{recipe.ingredient}
+
+						h4.ingredient Description: 
+						| #{recipe.description}
+		else
+			h3.title Sorry no recipe for now.

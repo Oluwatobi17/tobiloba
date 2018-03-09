@@ -1,0 +1,17 @@
+extends ../header
+
+block content
+	.shop
+		form
+			input.login(type='text', placeholder='Search for item')
+			input.item-search(type='submit', search='Search')
+		h2 Ingredients
+		if items
+			each item, i in items
+				.item
+					img.item-img(src='/images/ItemImage/#{item.goodsImage}')
+					h2.margin.bold #{item.brandname}
+					p.margin.bold Description:
+					p.margin #{item.description} 
+					p.margin.bold Price: $ #{item.price}
+					a.but-add(href='/shop/cart/#{item._id}') Add to cart

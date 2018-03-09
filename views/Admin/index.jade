@@ -1,0 +1,53 @@
+extends ../header
+
+block content
+	.content
+		h2.startup Items
+		table.table
+			thead.thead-dark
+				tr
+					th(scope='col') #
+					th(scope='col') Brand Name
+					th(scope='col') Description
+					th(scope='col') Price
+					th(scope='col') Exp-Date
+					th(scope='col')
+					th(scope='col')
+			if items
+				each item,i in items
+					tbody
+						tr
+							th(scope='row') #{i+1}
+							td #{item.brandname}
+							td #{item.description}
+							td $ #{item.price}
+							td #{item.expireDate}
+							td
+								a.edit#edit(href='#',onClick="edit('#{item._id}', 'edit')") Edit
+							td
+								a.delete(href='/admin/item/remove/#{item._id}') Delete
+					div(class='editform', id='#{item._id}')
+						form.form(action='/admin/item/edit/#{item._id}', method='post',enctype='multipart/form-data')
+							h2.startup Edit
+							input.login(type='text', value='#{item.brandname}', name='brandname',placeholder='Enter the brand name')
+							input.login(type='text', name='description', placeholder='Enter item description', value='#{item.description}')
+							input.login(type='text', name='price', placeholder='Enter item price', value='#{item.price}')
+							input.login(type='text', name='expireDate', placeholder='Enter item expiring date', value='#{item.expireDate}')
+							input.login(type='file', name='goodsImage', value='#{item.goodsImage}')
+							input.login(type='submit', value='Edit')
+				
+			a.addItem#formGroup(href='#',onClick="addItem('form', 'formGroup')") Add More
+
+			br
+
+			#form
+				form.form(action='/admin/addItem', method='post',enctype='multipart/form-data')
+					h2 Add item
+					input.login(type='text', name='brandname',placeholder='Enter the brand name')
+					input.login(type='text', name='description', placeholder='Enter item description')
+					input.login(type='text', name='price', placeholder='Enter item price')
+					input.login(type='text', name='expireDate', placeholder='Enter item expiring date')
+					input.login(type='file', name='goodsImage')
+					input.login(type='submit', value='Add item')
+		if items==''
+			h2.err No item present

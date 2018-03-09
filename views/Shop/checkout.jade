@@ -1,0 +1,131 @@
+extends ../header
+
+block content
+	.cart-container
+		.inner-space
+			.col-md-8.order-md-1
+				h4.mb-3 Billing address
+				form.needs-validation()
+					.row
+						.col-md-6.mb-3
+							label(for='firstName') First name
+							input.form-control(type='text', placeholder='', value='', required='')
+							.invalid-feedback
+								| Valid first name is required.
+						.col-md-6.mb-3
+							label(for='lastName') Last name
+							input#lastName.form-control(type='text', placeholder='', value='', required='')
+							.invalid-feedback
+								| Valid last name is required.
+					.mb-3
+						label(for='username') Username
+						.input-group
+							.input-group-prepend
+								span.input-group-text
+							input#username.form-control(type='text', placeholder='Username', required='')
+							.invalid-feedback(style='width: 100%;')
+								| Your username is required.
+					.mb-3
+						label(for='email')
+							| Email 
+							span.text-muted
+						input#email.form-control(type='email', placeholder='you@example.com')
+						.invalid-feedback
+							| Please enter a valid email address for shipping updates.
+					.mb-3
+						label(for='address') Address
+						input#address.form-control(type='text', placeholder='1234 Main Street City', required='')
+						.invalid-feedback
+							| Please enter your shipping address.
+					.row
+						.col-md-5.mb-3
+							label(for='country') Country
+							br
+							select#country.custom-select.d-block.w-100(required='')
+								option Nigeria
+							.invalid-feedback
+								| Please select a valid country.
+						.col-md-4.mb-3
+							label(for='state') State
+							br
+							select#state.custom-select.d-block.w-100(required='')
+								option Abia State
+								option(value='') Adamawa State	
+								option(value='') Akwa Ibom State	
+								option(value='') Anambra State
+								option(value='') Bauchi State
+								option(value='') Bayelsa State
+								option(value='') Benue State
+								option(value='') Borno State
+								option(value='') Cross River
+								option(value='') Delta State
+								option(value='') Ebonyi State
+								option(value='') Edo State
+								option(value='') Ekiti State
+								option(value='') Enugu State	
+								option(value='') Abuja
+								option(value='') Gombe State
+								option(value='') Imo State
+								option(value='') Jigawa State
+								option(value='') Kaduna State
+								option(value='') Kano State
+								option(value='') Katsina State
+								option(value='') Kebbi State
+								option(value='') Kogi State
+								option(value='') Kwara State
+								option(value='') Lagos State
+								option(value='') Nasarawa State
+								option(value='') Niger State
+								option(value='') Ogun State
+								option(value='') Ondo State
+								option(value='') Osun State
+								option(value='') Oyo State
+								option(value='') Plateau State
+								option(value='') Rivers State
+								option(value='') Sokoto State
+								option(value='') Taraba State
+								option(value='') Yobe State
+								option(value='') Zamfara State
+							.invalid-feedback
+								| Please provide a valid state.
+						.col-md-3.mb-3
+							label(for='zip') Zip
+							input#zip.form-control(type='text', placeholder='', required='')
+							.invalid-feedback
+								| Zip code required.
+					h4.mb-3 Payment
+					.d-block.my-3
+						.custom-control.custom-radio
+							input#credit.custom-control-input(name='paymentMethod', type='radio', checked='', required='')
+							label.custom-control-label(for='credit') Credit card
+						.custom-control.custom-radio
+							input#debit.custom-control-input(name='paymentMethod', type='radio', required='')
+							label.custom-control-label(for='debit') Debit card
+						.custom-control.custom-radio
+							input#paypal.custom-control-input(name='paymentMethod', type='radio', required='')
+							label.custom-control-label(for='paypal') Paypal
+					.row
+						.col-md-6.mb-3
+							label(for='cc-name') Name on card
+							input#cc-name.form-control(type='text', placeholder='', required='')
+							small.text-muted Full name as displayed on card
+							.invalid-feedback
+								| Name on card is required
+						.col-md-6.mb-3
+							label(for='cc-number') Credit card number
+							input#cc-number.form-control(type='text', placeholder='', required='')
+							.invalid-feedback
+								| Credit card number is required
+					.row
+						.col-md-3.mb-3
+							label(for='cc-expiration') Expiration
+							input#cc-expiration.form-control(type='text', placeholder='', required='')
+							.invalid-feedback
+								| Expiration date required
+						.col-md-3.mb-3
+							label(for='cc-expiration') CVV
+							input#cc-cvv.form-control(type='text', placeholder='', required='')
+							.invalid-feedback
+								| Security code required
+					hr.mb-4
+					button.btn.btn-primary.btn-lg.btn-block(type='submit') Continue to checkout

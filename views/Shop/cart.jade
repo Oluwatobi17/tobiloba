@@ -1,0 +1,23 @@
+extends ../header
+
+block content
+	.shop
+		h2.startup DacRecipe shopping cart
+		h2.startup.startup Shopping cart
+		if items!=''
+			each item, i in items
+				.cart
+					.inner-space
+						img.cart-img(src='/images/ItemImage/#{item.goodsImage}')
+						.cart-info
+							p #{item.description}
+							| Price: $ #{item.price}, Qty: #{item.qty}
+							a.but-add(href='/shop/#{item.id}/delete') Delete
+							a.but-add(href='/shop/#{item.id}/addMore') Add more
+							a.but-add(href='/shop/#{item.id}/remove') Remove
+		h2.startup Total amount is $ #{cart.totalPrice}
+
+		br
+		br
+		a.but-add(href='/shop/empty') Empty cart
+		a.but-add(href='/shop/checkout') Proceed to checkout

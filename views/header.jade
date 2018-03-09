@@ -1,0 +1,51 @@
+doctype html
+html(lang='en')
+	head
+		title=title
+		link(href='/stylesheets/style.css', rel='stylesheet')
+		//link(href='/stylesheets/bootstrap.css', rel='stylesheet')
+		meta(name='author', content='Ganiu Olalekan Ibrahim')
+		meta(name='keywords', content='dac recipe, food items,best recipe, food manual')
+		meta(name='description', content='Best blog, recipe posts,recipe shopping, add recipe, recipe shop')
+
+		nav.nav-top
+			if section=='admin'
+				.links
+					a.adminLinks(href='/admin/users') Users
+					a.adminLinks(href='/admin/recipes') Recipes
+					a.adminLinks(href='/admin') Items
+			else
+				form(method='post', action='/recipes/search')
+					input.search(type='text',name='title', placeholder='Recipe search')
+			img.logo(src='/images/background.jpg', alt="Sorry can't load image")
+			a.name(href='/recipes') DacRecipe
+		nav.nav-bottom
+			ul
+				li.dashboard-glyp
+					a.dashboard Dashboard
+				li.recipe-glyp
+					a.dashboard-content(href='/recipes') Recipes
+				li.shop-glyp
+					a.dashboard-content(href='/shop', target='_blank') Shop
+				li.cart-glyp
+					a.dashboard-content(href='/shop/cart') Cart - #{cart.totalQty}
+				li.report-glyp
+					a.dashboard-content(href='/report') Report
+				li.about-glyp
+					a.dashboard-content(href='/about') About
+				li.logout-glyp
+					a.dashboard-content(href='/logout') Logout
+	</nav>
+
+	body
+		!= messages()
+		if errors
+			ul
+				each error, i in errors
+					li.error #{error.msg}
+
+		block content
+		
+		script(src='/javascripts/js.js')
+		//script(src='/javascripts/jquery.js')
+		script(src='https://code.jquery.com/jquery-3.3.1.slim.min.js', integrity='sha256-3edrmyuQ0w65f8gfBsqowzjJe2iM6n0nKciPUp8y+7E=', crossorigin='anonymous')

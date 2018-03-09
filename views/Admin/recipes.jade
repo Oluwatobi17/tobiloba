@@ -1,0 +1,48 @@
+extends ../header
+
+block content
+	.content
+		h2.startup Recipes
+		table.table
+			thead.thead-dark
+				tr
+					th(scope='col') #
+					th(scope='col') _id
+					th(scope='col') Title
+					th(scope='col') Duration
+					th(scope='col') Date
+					th(scope='col')
+					th(scope='col')
+			if recipes
+				each recipe,i in recipes
+					tbody
+						tr
+							th(scope='row') #{i+1}
+							td #{recipe._id}
+							td #{recipe.title}
+							td #{recipe.time}
+							td #{recipe.Date}
+							td
+								a.edit#edit(href='#',onClick="edit('#{recipe._id}', 'edit')") Edit
+							td
+								a.delete(href='/admin/recipe/remove/#{recipe._id}') Delete
+					div(class='editform', id='#{recipe._id}')
+						form.form(action='/admin/recipe/edit/#{recipe._id}', method='post',enctype='multipart/form-data')
+							h2.startup Edit
+
+							input.login(type='text', name='title', placeholder='Enter recipe title', value='#{recipe.title}')
+
+							input.login(type='text', name='time', placeholder='Enter Duration', value='#{recipe.time}')
+
+							input.login(type='text', name='ingredient', placeholder='Enter ingredients', value='#{recipe.ingredient}')
+
+							input.login(type='text', name='description', placeholder='Enter instructions', value='#{recipe.description}')
+
+							input.login(type='file', name='itemImage', value='#{recipe.itemImage}')
+
+							input.login(type='submit', value='Edit')
+
+			br
+
+		if recipes==''
+			h2.err No recipe present

@@ -1,0 +1,37 @@
+extends ../header
+
+block content
+	.recipe-info1
+		h2 Your search result: #{search}
+			.goo
+				a.add#giver(href='#', onClick="formGiver('addForm', 'giver')") Add recipe
+
+				.recipe-info2(id='addForm')
+
+					h2.recipe-text Add Recipe
+					form(method='post', action='/recipes/addRecipe', enctype='multipart/form-data')
+						input.recipe-data(type='text', name='title', placeholder='Recipe title')
+						input.recipe-data(type='text', name='time', placeholder='Duration (30 M)')
+						textarea.textarea(name='ingredient', placeholder='Recipe ingredents')
+						textarea.desciption(name='description', placeholder='Description the item')
+						input.recipe-data(type='file', name='itemImage' required)
+						input.recipe-submit(type='submit', value='Add Recipe')
+		
+		if recipeInfo
+			each recipe,i in recipeInfo
+				.bucket
+					h3.title #{recipe.title}
+					
+					button.view(id='#{recipe._id}+2',onClick="droper('#{recipe._id}', '#{recipe._id}+2')") View
+
+					.recipe(id='#{recipe._id}')
+						img.rec-img(src='/images/RecipeImage/#{recipe.itemImage}')
+						h4.ingredient Duration: 
+						| #{recipe.time}
+						h4.ingredient Ingredient: 
+						| #{recipe.ingredient}
+
+						h4.ingredient Description: 
+						| #{recipe.description}
+		if recipeInfo==''
+			h3.title Sorry your search don't match any recipe

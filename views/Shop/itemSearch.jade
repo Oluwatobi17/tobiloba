@@ -1,0 +1,27 @@
+extends ../header
+
+block content
+	.shop
+		form
+			input.login(type='text', placeholder='Search for item')
+			input.item-search(type='submit', search='Search')
+		h2 Your search result;
+		.item
+			.inner-space
+				img.item-img(src='/images/recipes.jpg')
+				h4 Know chicken 
+				p Price: $11.89
+				a.but-add(href='#') Add to cart
+			
+		.item
+			.inner-space
+				img.item-img(src='/images/recipes.jpg')
+				h4 Onga
+				p Price: $8.09
+				a.but-add(href='#') Add to cart
+		.item
+			.inner-space
+				img.item-img(src='/images/recipes.jpg')
+				h4 Vedan
+				p Price: $4.23
+				a.but-add(href='#') Add to cart
